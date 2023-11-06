@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+
+<form id="new-form" action="/farms" method="POST">
+  <label>Farm name:</label>
+  <input type="text" name="name" placeholder="Name">
+  <label>Address:</label>
+  <input type="text" name="address.street" placeholder="Street">
+  <input type="text" name="address.town" placeholder="Town/Suburb">
+  <input type="text" name="address.postcode" placeholder="Postcode">
+  <select name="address.state">
+    <option value="VIC">VIC</option>
+    <option value="SA">SA</option>
+    <option value="NSW">NSW</option>
+    <option value="TAS">TAS</option>
+    <option value="QLD">QLD</option>
+    <option value="NT">NT</option>
+    <option value="WA">WA</option>
+  </select>
+
+  <label>Opening hours:</label>
+  <input type="text" name="openHours.monday" placeholder="Monday">
+  <input type="text" name="openHours.tuesday" placeholder="Tuesday">
+  <input type="text" name="openHours.wednesday" placeholder="Wednesday">
+  <input type="text" name="openHour.thursday" placeholder="Thursday">
+  <input type="text" name="openHour.friday" placeholder="Friday">
+  <input type="text" name="openHour.saturday" placeholder="Saturday">
+  <input type="text" name="openHour.sunday" placeholder="Sunday">
+
+  <input type="submit" value="Add Farm">
+</form>
+
+<%- include('../partials/footer') %>

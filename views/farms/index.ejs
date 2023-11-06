@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+
+
+<div>
+    <ul>
+        <% farms.forEach(function(f) { %>
+            <div><%= f.name %></div>
+            <div><%= f.address.street %></div>
+            <div><%= f.address.town %></div>
+            <div><%= f.address.postcode %></div>
+            <div><%= f.address.state %></div>
+            <div><a href="/farms/<%= f._id %>">DETAILS</a></div>
+        <% }); %>
+    </ul>
+</div>
+
+
+<%- include('../partials/footer') %>
