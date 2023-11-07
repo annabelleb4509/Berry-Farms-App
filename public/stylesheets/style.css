@@ -15,8 +15,11 @@ body {
     "main"
 }
 
-body > nav {
+h1 {
+  align-items: center;
+}
 
+body > nav {
   grid-area: nav;
   background-color: #21a926;
   display: flex;
@@ -53,3 +56,21 @@ nav > a.active {
 .login img {
   height: 30px;
 }
+
+.wrapper {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.table {
+  align-self: center;
+  padding: 10px 100px;
+  border: solid 1px;
+}
+
+.details-label {
+  margin: 10px 0px;
+  padding: 10px;
+  border: solid 1px;
+}
+

@@ -15,6 +15,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/farms');
 const farmsRouter = require('./routes/farms');
 const reviewsRouter = require('./routes/reviews');
+const fruitsRouter = require('./routes/fruits')
 
 
 var app = express();
@@ -47,6 +48,7 @@ app.use(function(req, res, next) {
 app.use('/', indexRouter);
 app.use('/farms', farmsRouter);
 app.use('/', reviewsRouter);
+app.use('/', fruitsRouter);
 
 
 

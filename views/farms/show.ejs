@@ -12,7 +12,7 @@
       <div><%= farm.address.state %></div>
       <br><br>
 
-      <label for="OpenHours">Berry picking hours</label>
+      <label for="openHours">Berry picking hours</label>
       <div class="a"><%= 'Monday ' + farm.openHours.monday %></div>
       <div><%= 'Tuesday ' + farm.openHours.tuesday %></div>
       <div><%= 'Wednesday ' + farm.openHours.wednesday %></div>
@@ -26,13 +26,17 @@
 
     <section id="show-page-sec-column">
         <label for="Produce">Fruits to pick</label>
-        <div class="a"><%= farm.produce.name %></div>
-        <div><%= farm.produce.season %></div>
-        <div><%= farm.produce.availability %></div>
+
+        <% farm.produce.forEach(function(f) { %>
+            <div class="a"><%= f.name %></div>
+            <div><%= f.season %></div>
+            <div><%= f.availability %></div>
+        <% }); %>
     </section>
 
 
-    <form id="add-fruit-to-produce" action="/farms/<%= farm._id %>/fruits" method="POST">
+    <form id="add-fruit-to-produce" action="/farms/<%= farm._id %>/fruits" 
+        method="POST">
         <label>Produce:</label>
         <input type="text" name="name" placeholder="Type">
         <input type="text" name="season" placeholder="Season">

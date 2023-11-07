@@ -17,7 +17,7 @@ async function index(req, res) {
   }
 
   async function show(req, res) {
-    const farm = await Farm.findById(req.params.id);
+    const farm = await Farm.findById(req.params.id).populate('produce');
     res.render('farms/show', { title: 'Farm Details', farm });
   }
 
