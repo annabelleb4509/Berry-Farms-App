@@ -1,27 +1,42 @@
 * {
   box-sizing: border-box;
-  font-family: Helvetica;
   color: #424748;
+  font-family: 'Sulphur Point', sans-serif;
 }
 
 body {
-  background-color: rgb(202, 250, 163);
-  margin: 0;
+  background-color: rgb(243, 241, 236);
+  line-height: 1.5;
   height: 100vh;
-  display: grid;
-  grid-template-rows: 50px 1fr;
-  grid-template-areas: 
-    "nav"
-    "main"
+
 }
 
-h1 {
-  align-items: center;
+header {
+  background-color: #046620;
+  background-image: url("/images/Berry-field.jpg");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 50% 100%;
+  height: auto;
+  line-height: 0.2;
+  padding: 7vw 2em;
+  text-align: center;
 }
+
+h2 {
+  margin-top: 1em;
+  padding-top: 1em;
+}
+
+
+
 
 body > nav {
+  font-size: 18px;
+  line-height: 0.2;
   grid-area: nav;
-  background-color: #21a926;
+  background-color: rgba(213, 99, 58, 0.2);
+  border-top: solid 10px #d46058;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -29,7 +44,7 @@ body > nav {
 }
 
 nav > a {
-  color: #f4fafb;
+  color: #d46058;
   margin: 20px;
   text-decoration: none;
   padding: 10px;
@@ -57,20 +72,68 @@ nav > a.active {
   height: 30px;
 }
 
-.wrapper {
-  width: 80%;
+
+.grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 0.8fr 1fr 0.8fr;
+ grid-template-rows: 1fr 1fr;
+ 
 }
-.table {
-  align-self: center;
-  padding: 10px 100px;
+
+.grid-item {
+  color: #fff;
+  text-align: center;
+  padding: 20px;
   border: solid 1px;
 }
 
-.details-label {
-  margin: 10px 0px;
+.farm-name {
+  font-weight: bold;
+}
+
+.input-group {
   padding: 10px;
-  border: solid 1px;
 }
 
+.picking-hours {
+
+  padding: 50px 0 10px 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+
+
+.review-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.review-user img {
+  border-radius: 50%;
+  height: 40px;
+}
+
+.openHours, .produce, .farm-name {
+  font-size:large;
+  font-weight: bold;
+  padding: 20px;
+}
+
+
+.wrapper {
+  padding: 5px 20px 50px;
+  background-color: rgba(239, 177, 155, 0.1);
+
+  border-radius: 2%;
+}
+
+#produce-form-container {
+  padding: 20px 0;
+}
+
+.display-4 {
+  padding: 70px 50px;
+}

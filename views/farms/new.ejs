@@ -1,32 +1,83 @@
 <%- include('../partials/header') %>
 
-<form id="new-form" action="/farms" method="POST">
-  <label>Farm name:</label>
-  <input type="text" name="name" placeholder="Name">
-  <label>Address:</label>
-  <input type="text" name="address.street" placeholder="Street">
-  <input type="text" name="address.town" placeholder="Town/Suburb">
-  <input type="text" name="address.postcode" placeholder="Postcode">
-  <select name="address.state">
-    <option value="VIC">VIC</option>
-    <option value="SA">SA</option>
-    <option value="NSW">NSW</option>
-    <option value="TAS">TAS</option>
-    <option value="QLD">QLD</option>
-    <option value="NT">NT</option>
-    <option value="WA">WA</option>
-  </select>
+<div class="container text-center">
+  <div class="row">
+    <div class="col-3">
+    <h2>Add <br><br> <em>your farm </em> <br><br> to appear amongst other berry producing businesses</h2>
+    </div>
+    <div class="col-1"></div>
 
-  <label>Opening hours:</label>
-  <input type="text" name="openHours.monday" placeholder="Monday">
-  <input type="text" name="openHours.tuesday" placeholder="Tuesday">
-  <input type="text" name="openHours.wednesday" placeholder="Wednesday">
-  <input type="text" name="openHour.thursday" placeholder="Thursday">
-  <input type="text" name="openHour.friday" placeholder="Friday">
-  <input type="text" name="openHour.saturday" placeholder="Saturday">
-  <input type="text" name="openHour.sunday" placeholder="Sunday">
+    <div class="col-7">
+      <form id="new-form" action="/farms" method="POST">
+      <div class="input-group">
+        <span class="input-group-text"> o </span>
+        <input type="text" aria-label="Farm name" class="form-control" placeholder="Farm Name" name="name">
+      </div>
 
-  <input type="submit" value="Add Farm">
-</form>
+      <div class="input-group">
+        <span class="input-group-text">o</span>
+        <input type="text" aria-label="Street name" class="form-control" placeholder="Street" name="address.street">
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-text">o</span>
+        <input type="text" aria-label="City/Suburb" class="form-control" placeholder="City/Suburb" name="address.town">
+        <input type="text" aria-label="ZipCode" class="form-control" placeholder="Postcode" name="address.postcode">
+       
+        <select aria-label="State" class="form-control" placeholder="state" name="address.state">
+          <option value="VIC">VIC</option>
+          <option value="SA">SA</option>
+          <option value="NSW">NSW</option>
+          <option value="TAS">TAS</option>
+          <option value="QLD">QLD</option>
+          <option value="NT">NT</option>
+          <option value="WA">WA</option>
+        </select>
+      </div>
+
+      <label class="picking-hours" for="hours">Berry picking hours</label>
+      <div class="input-group">
+        <span class="input-group-text">-</span>
+        <input type="text" aria-label="hours-Mon" class="form-control" placeholder="Monday" name="openHours.monday">
+      </div>
+        <div class="input-group">
+        <span class="input-group-text">-</span>
+        <input type="text" aria-label="hours-Tue" class="form-control" placeholder="Tuesday" name="openHours.tuesday">
+      </div>
+        <div class="input-group">
+        <span class="input-group-text">-</span>
+        <input type="text" aria-label="hours-Wed" class="form-control" placeholder="Wednesday" name="openHours.wednesday">
+      </div>
+      <div class="input-group">
+      <span class="input-group-text">-</span> 
+        <input type="text" aria-label="hours-Thu" class="form-control" placeholder="Thursday" name="openHours.thursday">
+      </div>
+      <div class="input-group">
+      <span class="input-group-text">-</span>
+        <input type="text" aria-label="hours-Fri" class="form-control" placeholder="Friday" name="openHours.friday">
+      </div>
+      <div class="input-group">
+        <span class="input-group-text">-</span> 
+          <input type="text" aria-label="hours-Sat" class="form-control" placeholder="Saturday" name="openHours.saturday">
+        </div>
+        <div class="input-group">
+        <span class="input-group-text">-</span>
+          <input type="text" aria-label="hours-Sun" class="form-control" placeholder="Sunday" name="openHours.sunday">
+        </div>
+
+        <div class="d-grid gap-2">
+          <input class="btn btn-primary" type="submit" value= "ADD FARM">
+        </div>
+
+      </form>
+
+    </div>
+    <div class="col-1">
+   
+    </div>
+  </div>
+</div>
+
+
 
 <%- include('../partials/footer') %>

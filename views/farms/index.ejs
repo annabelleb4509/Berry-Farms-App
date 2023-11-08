@@ -2,24 +2,18 @@
 
 
 
-<div class="wrapper">
-
-
-        <% farms.forEach(function(f) { %>
-       
-        <div class="table">
-            <div><%= f.name %></div>
-            <div><%= f.address.street %></div>
-            <div><%= f.address.town  + ', ' %>  <%= f.address.state %>  <%= f.address.postcode %></div>
-        </div>
-        <div class="details-label">
-            <div><a href="/farms/<%= f._id %>">DETAILS</a></div>
+<div class="grid-container">
+    <% farms.forEach(function(f) { %>
     
+    <div class="grid-item">
+        <div class="farm-name"><%= f.name %></div>
+        <div><%= f.address.street %></div>
+        <div><%= f.address.town  + ', ' %>  <%= f.address.state %>  <%= f.address.postcode %></div>
     </div>
-        <% }); %>
-
-
+    <div class="grid-item">
+        <div><a href="/farms/<%= f._id %>">DETAILS</a></div>
+    </div>
+    <% }); %>
 </div>
-
 
 <%- include('../partials/footer') %>
