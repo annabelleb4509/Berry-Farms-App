@@ -7,9 +7,14 @@ module.exports = {
 async function create(req, res) {
   const farm = await Farm.findById(req.params.id);
 
-  req.body.user = req.user._id;
-  req.body.userName = req.user.name;
-  req.body.userAvatar = req.user.avatar;
+  if ('user' in req) {
+    req.body.user = req.user._id;
+    req.body.userName = req.user.name;
+    req.body.userAvatar = req.user.avatar;
+  } else {
+    req.body.userName = "Anonymous";
+    // req.body.userAvatar = "";
+  }
   
   // We can push (or unshift) subdocs into Mongoose arrays
   farm.reviews.push(req.body);

@@ -4,8 +4,23 @@ const Farm = require('../models/farm');
 module.exports = {
   new: newFruit,
   create,
-  addToProduce
+  addToProduce,
+  edit,
+  update
 };
+
+
+function update(req, res) {
+  req.bodu.done = !!req.body.done;
+  Fruit.update(req.params.id, req.body);
+  res.redirect(`/fruits/${req.params.id}`);
+};
+
+function edit(req, res) {
+  const fruit = Fruit.getOne(req.params.id);
+  res.render('fruits/edit', { title: 'Edit Produce', fruit });
+}
+
 
 async function addToProduce(req, res) {
     if (req.body.availability === "on") {

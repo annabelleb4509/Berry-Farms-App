@@ -16,3 +16,9 @@ router.get('/:id', farmsCtrl.show);
 router.post('/', farmsCtrl.create);
 
 module.exports = router;
+
+
+
+// // DELETE /todos/:id
+// router.delete('/:id', todosController.delete);
+

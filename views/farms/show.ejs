@@ -1,4 +1,26 @@
 <%- include('../partials/header') %>
+
+
+
+
+<header></header>
+
+<nav>
+
+  <a href="/farms" <%- title === 'All Farms' ? 'class="active"' : '' %>>ALL FARMS</a>
+  <% if (user) { %>
+    <a href="/farms/new" <%- title === 'Add Farm' ? 'class="active"' : '' %>>ADD FARM</a>
+    <a href="/logout">LOG OUT</a>
+  <% } else { %>
+    <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+  <% } %>
+</nav>
+<main>
+
+
+<div class="container" >
+
+
 <h1 class="display-4" class="farm-name">
    <%= farm.name %>
 </h1>
@@ -10,7 +32,9 @@
       <div class="farm-name">We are located:</div>
       <div><%= farm.address.street %></div>
       <div><%= farm.address.town  + ', ' %>  <%= farm.address.state %>  <%= farm.address.postcode %></div>
-         
+
+      <div id="map" style="height: 400px;"></div>
+
     </div>
     <div class="col-4">
       <label class="openHours" for="openHours">Berry picking hours</label>
@@ -27,12 +51,14 @@
       
       <section id="show-page-sec-column">
         <label class="produce" for="Produce">Fruits to pick</label>
-
         <% farm.produce.forEach(function(f) { %>
             <div class="a"><%= f.name %></div>
             <div><%= f.season %></div>
             <div><%= f.availability %></div>
         <% }); %>
+
+
+
       </section>
 
     </div>
@@ -42,6 +68,8 @@
 </div>
 
 
+
+  <% if (user) { %>
 <div class="container text-center">
   <div class="row" id="produce-form-container">
     <div class="col-8">
@@ -56,96 +84,84 @@
         <input type="checkbox" name="availability" checked>
         <input type="submit" value="Add Produce">
     </form>
+  <% } %>
+
 
     </div>
   </div>
 </div>
-
-
-
-
-<div class="wrapper">
-
-  <h2>Reviews</h2>
-
-
-<% if (farm.reviews.length) { %>
-  <table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Review</th>
-        <th>Rating</th>
-      </tr>
-    </thead>
-    <tbody>
-   
-      <% let total = 0 %>
-      <% farm.reviews.forEach(function(f) { %>
-        
-        <% total += f.rating %>
-        <tr>
-          <td class="review-user"><img alt="avatar" src="<%= f.userAvatar %>" referrerpolicy="no-referrer"><%= f.userName %></td>
-       
-          <td><%= f.createdAt.toLocaleDateString() %></td>
-          <td><%= f.content %></td>
-          <td><%= f.rating %></td>
-        </tr>
-      <% }); %>
-     
-      <tr>
-        <td colspan="2"></td>
-        <td><strong><%= (total / farm.reviews.length).toFixed(1) %></strong></td>
-      </tr>
-    </tbody>
-  </table>
-<% } else { %>
-  <h5>No Reviews Yet</h5>
-<% } %>
-
-
-
-
-
 
 
 
 <div class="container text-center">
   <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
 
- 
+      <div class="wrapper">
+        <h2>Reviews</h2>
+        <% if (farm.reviews.length) { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">User</th>
+              <th scope="col">Date</th>
+              <th scope="col">Review</th>
+              <th scope="col">Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% farm.reviews.forEach(function(f) { %>
+            <tr>
+              <% if (f.userName === 'Anonymous') { %>
+              <td class="review-user"><%= f.userName %></td>
+              <% } else { %>  
+              <td class="review-user"><img alt="avatar" src="<%= f.userAvatar %>" referrerpolicy="no-referrer"><%= f.userName %></td>
+              <% } %>
+              <td><%= f.createdAt.toLocaleDateString() %></td>
+              <td><%= f.content %></td>
+              <td><%= f.rating %></td>
+            </tr>
+          <% }); %>
+          </tbody>
+        </table>
+        <% } else { %>
+        <h5>No Reviews Yet</h5>
+        <% } %>
 
-  <label>Leave a review</label>
-     <div class="col-10">
-<% if (user) { %>
-<form id="add-review-form" method="POST"
-  action="/farms/<%= farm._id %>/reviews">
+        <div class="container text-center">
+        <div class="row">
+       
+        <div class="col-10">
 
-<div class="mb-3">
-  <label name="content" for="exampleFormControlTextarea1" class="form-label">Type your review here</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-</div>
+        <form id="add-review-form" method="POST" action="/farms/<%= farm._id %>/reviews">
 
-
+        <div class="mb-3">
+        <label name="content" for="exampleFormControlTextarea1" class="form-label">Leave a review</label>
+        <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
     </div>
     <div class="col-2">
-    <select name="rating" class="form-select" size="3" aria-label="Size 3 select example">
-
-  <option selected>Rating</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-    <option value="4">4</option>
-  <option value="5">5</option>
-</select>
-  </div>
-  <input type="submit" value="Add Review">
-</form>
-<% } %>
-
-     
+      <select name="rating" class="form-select" size="3" aria-label="Size 3 select example">
+        <option selected>Rating</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+    <input type="submit" value="Add Review">
+  </form>
+</div>
   
-  </div>
+</div>
+<div class="col-1">
+</div>
+</div>
+</div>
+     
+
 </div>
 
 

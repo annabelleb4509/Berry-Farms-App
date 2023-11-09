@@ -16,7 +16,7 @@ const reviewSchema = new Schema({
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
-      required: true
+      required: false
     },
     userName: String,
     userAvatar: String

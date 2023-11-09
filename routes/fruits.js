@@ -11,7 +11,12 @@ router.post('/fruits', fruitsCtrl.create);
 // POST /movies/:id/performers (associate a performer with a movie)
 router.post('/farms/:id/fruits', fruitsCtrl.addToProduce);
 
-//update
-//delete
+
+// // edit GET /todos/:id/edit
+// router.get('/:id/edit', fruitsController.edit);
+
+// // update PUT/PATCH /todos/:id
+// router.put('/:id', fruitsController.update);
+
 
 module.exports = router;

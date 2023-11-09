@@ -19,6 +19,7 @@ async function index(req, res) {
 
   async function show(req, res) {
     const farm = await Farm.findById(req.params.id).populate('produce');
+    console.log(farm)
     res.render('farms/show', { title: '', farm });
   }
 
@@ -52,7 +53,12 @@ async function index(req, res) {
       farm.coordinates.latitude = geoResult[0].latitude;
       console.log(farm)
       await farm.save();
-      res.redirect(`/farms`);
+
+      const place = await Farm.findById(req.params.farmId);
+
+    res.render('farms', { title: ''});
+      
+
     } catch (err) {
       // Typically some sort of validation error
       console.log(err);
