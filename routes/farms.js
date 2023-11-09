@@ -19,6 +19,4 @@ module.exports = router;
 
 
 
-// // DELETE /todos/:id
-// router.delete('/:id', todosController.delete);
 

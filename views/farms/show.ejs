@@ -32,64 +32,76 @@
       <div class="farm-name">We are located:</div>
       <div><%= farm.address.street %></div>
       <div><%= farm.address.town  + ', ' %>  <%= farm.address.state %>  <%= farm.address.postcode %></div>
-
-      <div id="map" style="height: 400px;"></div>
-
+      <div class="map-on-show-page">
+      <iframe width="375" height="300" src="https://www.openstreetmap.org/export/embed.html?bbox=<%= farm.coordinates.longitude %>%2C<%= farm.coordinates.latitude %>%2C<%= farm.coordinates.longitude %>%2C<%= farm.coordinates.latitude %>&layer=mapquest&marker=<%= farm.coordinates.latitude %>,<%= farm.coordinates.longitude %>" style="border: 1px solid black"></iframe><br/><small><a href="http://www.openstreetmap.org/?lat=<%= farm.coordinates.latitude %>&lon=<%= farm.coordinates.longitude %>&zoom=13&layers=Q&mlat=<%= farm.coordinates.latitude %>&mlon=<%= farm.coordinates.longitude %>">View Larger Map</a></small>
+    </div>
     </div>
     <div class="col-4">
       <label class="openHours" for="openHours">Berry picking hours</label>
-      <div class="a"><%= 'Monday ' + farm.openHours.monday %></div>
-      <div><%= 'Tuesday ' + farm.openHours.tuesday %></div>
-      <div><%= 'Wednesday ' + farm.openHours.wednesday %></div>
-      <div><%= 'Thursday ' + farm.openHours.thursday %></div>
-      <div><%= 'Friday ' + farm.openHours.friday %></div>
-      <div><%= 'Saturday ' + farm.openHours.saturday %></div>
-      <div><%= 'Sunday ' + farm.openHours.sunday %></div>
-
+      <div class="open-hours-container">
+        <div class="hours"><%= 'Monday ' + farm.openHours.monday %></div>
+        <div class="hours"><%= 'Tuesday ' + farm.openHours.tuesday %></div>
+        <div class="hours"><%= 'Wednesday ' + farm.openHours.wednesday %></div>
+        <div class="hours"><%= 'Thursday ' + farm.openHours.thursday %></div>
+        <div class="hours"><%= 'Friday ' + farm.openHours.friday %></div>
+        <div class="hours"><%= 'Saturday ' + farm.openHours.saturday %></div>
+        <div class="hours"><%= 'Sunday ' + farm.openHours.sunday %></div>
+      </div>
     </div>
-    <div class="col-4">
+    <div class="col-3">
       
       <section id="show-page-sec-column">
         <label class="produce" for="Produce">Fruits to pick</label>
-        <% farm.produce.forEach(function(f) { %>
-            <div class="a"><%= f.name %></div>
-            <div><%= f.season %></div>
-            <div><%= f.availability %></div>
-        <% }); %>
 
-
-
+          <% farm.produce.forEach(function(f) { %>
+            <div class="produce-container">
+            <div class="produce-type" class="produce-info"><%= f.name %></div>
+            <div class="produce-info"><%= 'In season: ' + ' ' + f.season %></div>
+            <div class="produce-info"><%= f.availability ? 'Available now' : '' %></div>
+          </div> 
+          <% }); %>
       </section>
 
+
+
+      
+<div class="">
+      <% if (user) { %>
+        <div class="container text-center">
+          <div class="row" id="produce-form-container">
+      
+                  <form id="add-fruit-to-produce" action="/farms/<%= farm._id %>/fruits" method="POST">
+                <label>Produce:</label>
+        
+                  <div class="input-group">
+                    <span class="input-group-text"> o </span>
+                    <input type="text" aria-label="Farm name" class="form-control" placeholder="Fruit type" name="name">
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-text"> o </span>
+                    <input type="text" aria-label="Farm name" class="form-control" placeholder="In season" name="season">
+                  </div>
+                <label>Available now?</label>
+                <input type="checkbox" name="availability" checked>
+                <div class="d-grid gap-2">
+                  <input class="btn btn-primary" type="submit" value= "Add to fruits">
+                </div>
+            </form>
+          <% } %>
+
+        </div>
+
+
+
     </div>
 
+    <div class="col-1"></div>
 
   </div>
 </div>
 
 
 
-  <% if (user) { %>
-<div class="container text-center">
-  <div class="row" id="produce-form-container">
-    <div class="col-8">
-    </div>
-        <div class="col-4">
-    <form id="add-fruit-to-produce" action="/farms/<%= farm._id %>/fruits" 
-        method="POST">
-        <label>Produce:</label>
-        <input type="text" name="name" placeholder="Type">
-        <input type="text" name="season" placeholder="Season">
-        <label>Available now?</label>
-        <input type="checkbox" name="availability" checked>
-        <input type="submit" value="Add Produce">
-    </form>
-  <% } %>
-
-
-    </div>
-  </div>
-</div>
 
 
 
@@ -101,10 +113,10 @@
       <div class="wrapper">
         <h2>Reviews</h2>
         <% if (farm.reviews.length) { %>
-        <table class="table">
+        <table class="table table-review">
           <thead>
             <tr>
-              <th scope="col">User</th>
+              <th scope="col"></th>
               <th scope="col">Date</th>
               <th scope="col">Review</th>
               <th scope="col">Rating</th>
@@ -129,20 +141,18 @@
         <h5>No Reviews Yet</h5>
         <% } %>
 
-        <div class="container text-center">
-        <div class="row">
-       
-        <div class="col-10">
 
+  
+        <div class="review-form-container"> 
         <form id="add-review-form" method="POST" action="/farms/<%= farm._id %>/reviews">
 
-        <div class="mb-3">
+        <div class="mb-3">          
         <label name="content" for="exampleFormControlTextarea1" class="form-label">Leave a review</label>
         <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
-    </div>
-    <div class="col-2">
-      <select name="rating" class="form-select" size="3" aria-label="Size 3 select example">
+    
+  
+      <select name="rating" class="form-select" aria-label="Default select example">
         <option selected>Rating</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -150,20 +160,23 @@
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
-    </div>
-    <input type="submit" value="Add Review">
+   
+      <div class="d-grid gap-2">
+        <input class="btn btn-primary" type="submit" value= "Add Review">
+      </div>
+    
   </form>
-</div>
-  
-</div>
-<div class="col-1">
+
+
 </div>
 </div>
 </div>
      
-
 </div>
 
 
 
 <%- include('../partials/footer') %>
+
+
+

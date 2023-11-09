@@ -28,10 +28,11 @@ async function addToProduce(req, res) {
     } else {
       req.body.availability = false
     }
-    const newFruit = await Fruit.create(req.body);
-    const farmFruit = await Farm.findById(req.params.id);
-    farmFruit.produce.push(newFruit)
+
     try {   
+      const newFruit = await Fruit.create(req.body);
+      const farmFruit = await Farm.findById(req.params.id);
+      farmFruit.produce.push(newFruit)
         await farmFruit.save();
     } catch (err) {
         console.log(err);

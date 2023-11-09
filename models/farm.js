@@ -36,13 +36,13 @@ const reviewSchema = new Schema({
                 },
     },
     openHours: {
-        monday: String,
-        tuesday: String,
-        wednesday: String,
-        thursday: String,
-        friday: String,
-        saturday: String,
-        sunday: String
+        monday: { type: String, default: 'closed' },
+        tuesday: { type: String, default: 'closed' },
+        wednesday: { type: String, default: 'closed' },
+        thursday: { type: String, default: 'closed' },
+        friday: { type: String, default: 'closed' },
+        saturday: { type: String, default: 'closed' },
+        sunday: { type: String, default: 'closed' },
     },
     coordinates: {
         longitude: Number,

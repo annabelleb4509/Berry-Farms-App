@@ -5,7 +5,7 @@
 <header></header>
 
 <nav>
-
+<a href="/" <%- title === 'Home' ? 'class="active"' : '' %>>HOME</a>
   <a href="/farms" <%- title === 'All Farms' ? 'class="active"' : '' %>>ALL FARMS</a>
   <% if (user) { %>
     <a href="/farms/new" <%- title === 'Add Farm' ? 'class="active"' : '' %>>ADD FARM</a>
@@ -19,8 +19,9 @@
 
 <div class="container" >
 
+  
 
-
+<h1 class="Index-heading">U Pick Berries </h1>
 <div class="grid-container">
     <% farms.forEach(function(f) { %>
     
@@ -28,9 +29,10 @@
         <div class="farm-name"><%= f.name %></div>
         <div><%= f.address.street %></div>
         <div><%= f.address.town  + ', ' %>  <%= f.address.state %>  <%= f.address.postcode %></div>
-    </div>
-    <div class="grid-item">
-        <div><a href="/farms/<%= f._id %>">DETAILS</a></div>
+        <a class="icon-link" class="details-link" href="/farms/<%= f._id %>">
+          Farm Details
+          <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
+        </a>
     </div>
     <% }); %>
 </div>

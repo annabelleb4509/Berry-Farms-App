@@ -1,32 +1,30 @@
 * {
   box-sizing: border-box;
-  color: #424748;
+  color: #5d6263;
   font-family: 'Sulphur Point', sans-serif;
 }
 
 body {
-  background-color: rgb(243, 241, 236);
+  background-color: #f7f2f2;
   line-height: 1.5;
   height: 100vh;
-
 }
 
 .home {
   background-color: #f7f2f2;
   height: 100vh;
   margin: 200px;
-  position: relative;
-  top: 50%;
-  left: -10%;
 }
+
 
 .home-berry-field {
   background-image: url("/images/Berry-field.jpg");
   border: solid 2px #d46058;
   background-repeat: no-repeat;
   border-radius: 50%;
-  margin: 50px 400px;
+  margin: 2% 300px;
   padding: 10em 10em;
+  position: relative;
 }
 
 header {
@@ -88,19 +86,28 @@ nav > a.active {
   height: 30px;
 }
 
+.Index-heading {
+  margin: 40px 0 30px 40px;
+}
 
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 0.8fr 1fr 0.8fr;
- grid-template-rows: 1fr 1fr;
- 
+  grid-template-rows: 1fr 1fr;
 }
 
 .grid-item {
   color: #fff;
   text-align: center;
-  padding: 20px;
-  border: solid 1px;
+  padding: 50px;
+}
+
+grid-item-farms-index {
+  margin: 100px;
+}
+
+.icon--link {
+ color: grey;
 }
 
 .farm-name {
@@ -112,13 +119,10 @@ nav > a.active {
 }
 
 .picking-hours {
-
   padding: 50px 0 10px 0;
   font-size: 20px;
   font-weight: bold;
 }
-
-
 
 
 .review-user {
@@ -138,23 +142,68 @@ nav > a.active {
   padding: 20px;
 }
 
-
-.wrapper {
-  padding: 5px 20px 50px;
-  background-color: rgba(239, 177, 155, 0.1);
-
-  border-radius: 2%;
+.hours {
+  padding: 10px;
 }
 
+.produce-info {
+  padding: 5px;
+}
+
+.produce-type {
+  font-weight: bold;
+  color: #d46058;
+}
+
+
 #produce-form-container {
-  padding: 20px 0;
+  margin: 70px 0 70px 0;
+}
+
+.produce-container {
+  padding: 10px 0;
 }
 
 .display-4 {
   padding: 70px 50px;
 }
 
-tr {
-  background-color: rgb(239, 140, 113);
+.wrapper {
+  padding: 5px 20px 50px;
+  background-color: rgba(239, 177, 155, 0.1);
+  border-radius: 2%;
+}
 
+.table-review {
+  background-color: rgb(2, 2, 103);
+}
+
+.form-label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #d46058;
+  border: solid 1px #d46058;
+  margin: 1em 0;
+}
+
+.btn-primary:hover {
+  background-color: #f3dad8;
+  border: solid 1px #e75a50;
+}
+
+.review-form-container {
+  margin: 3em 0;
+}
+
+
+
+.map-on-show-page {
+  margin: 3em 0;
+}
+
+.new-form-wrapper {
+ margin: 50px 0
 }

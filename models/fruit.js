@@ -5,7 +5,7 @@ const fruitSchema = new Schema({
   name: {
     type: String,
     required: true,
-    unique: true
+    unique: false
   },
   season: String,
   availability: Boolean,

@@ -48,7 +48,6 @@ async function index(req, res) {
       const geoResult = await geoCoder.geocode(req.body['address.street'] + ', ' + req.body['address.town'] + ' ' +  req.body['address.state'] + ' ' +  req.body['address.postcode']);
 
       // Redirect to the new farm's show functionality 
-      console.log(geoResult)
       farm.coordinates.longitude = geoResult[0].longitude;
       farm.coordinates.latitude = geoResult[0].latitude;
       console.log(farm)
