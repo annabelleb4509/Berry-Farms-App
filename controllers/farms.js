@@ -19,7 +19,6 @@ async function index(req, res) {
 
   async function show(req, res) {
     const farm = await Farm.findById(req.params.id).populate('produce');
-    console.log(farm)
     res.render('farms/show', { title: '', farm });
   }
 
@@ -53,11 +52,9 @@ async function index(req, res) {
       console.log(farm)
       await farm.save();
 
-      const place = await Farm.findById(req.params.farmId);
+      const farms = await Farm.find({});
 
-    res.render('farms', { title: ''});
-      
-
+      res.render('farms', { title: '', farms});
     } catch (err) {
       // Typically some sort of validation error
       console.log(err);

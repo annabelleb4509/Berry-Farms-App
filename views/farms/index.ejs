@@ -5,24 +5,55 @@
 <header></header>
 
 <nav>
-<a href="/" <%- title === 'Home' ? 'class="active"' : '' %>>HOME</a>
+  <a href="/" <%- title === 'Home' ? 'class="active"' : '' %>>HOME</a>
   <a href="/farms" <%- title === 'All Farms' ? 'class="active"' : '' %>>ALL FARMS</a>
-  <% if (user) { %>
-    <a href="/farms/new" <%- title === 'Add Farm' ? 'class="active"' : '' %>>ADD FARM</a>
-    <a href="/logout">LOG OUT</a>
-  <% } else { %>
-    <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
-  <% } %>
+    <% if (user) { %>
+      <a href="/farms/new" <%- title === 'Add Farm' ? 'class="active"' : '' %>>ADD FARM</a>
+      <a href="/logout">LOG OUT</a>
+    <% } else { %>
+      <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+    <% } %>
 </nav>
+
 <main>
 
+  <div class="container" >
+    <h1 class="Index-heading">U Pick Berries </h1>
 
-<div class="container" >
 
-  
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-10">
 
-<h1 class="Index-heading">U Pick Berries </h1>
-<div class="grid-container">
+    <div id="map" ></div>
+    <script>
+      // Set main map view
+      const map = L.map('map').setView([-36.880, 145.876], 6);
+
+      const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 12,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(map);
+
+      <% farms.forEach(function(f) { %>
+        L.marker([<%= f.coordinates.latitude %>, <%= f.coordinates.longitude %>]).addTo(map)
+          .bindPopup('<b><%= f.name %></b>').openPopup();
+      <% }); %>
+
+      map.on('click', onMapClick);
+    </script>
+
+
+</div>
+<div class="col-1">
+</div>
+</div>
+</div>
+
+
+  <div class="grid-container">
     <% farms.forEach(function(f) { %>
     
     <div class="grid-item">
@@ -35,7 +66,7 @@
         </a>
     </div>
     <% }); %>
-</div>
+  </div>
 
 <%- include('../partials/footer') %>
 

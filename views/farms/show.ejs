@@ -34,7 +34,7 @@
       <div><%= farm.address.town  + ', ' %>  <%= farm.address.state %>  <%= farm.address.postcode %></div>
       <div class="map-on-show-page">
       <iframe width="375" height="300" src="https://www.openstreetmap.org/export/embed.html?bbox=<%= farm.coordinates.longitude %>%2C<%= farm.coordinates.latitude %>%2C<%= farm.coordinates.longitude %>%2C<%= farm.coordinates.latitude %>&layer=mapquest&marker=<%= farm.coordinates.latitude %>,<%= farm.coordinates.longitude %>" style="border: 1px solid black"></iframe><br/><small><a href="http://www.openstreetmap.org/?lat=<%= farm.coordinates.latitude %>&lon=<%= farm.coordinates.longitude %>&zoom=13&layers=Q&mlat=<%= farm.coordinates.latitude %>&mlon=<%= farm.coordinates.longitude %>">View Larger Map</a></small>
-    </div>
+      </div>
     </div>
     <div class="col-4">
       <label class="openHours" for="openHours">Berry picking hours</label>

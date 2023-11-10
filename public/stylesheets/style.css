@@ -92,14 +92,14 @@ nav > a.active {
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 0.8fr 1fr 0.8fr;
+  grid-template-columns: 1.5fr 1.5fr 1.5fr;
   grid-template-rows: 1fr 1fr;
 }
 
 .grid-item {
   color: #fff;
   text-align: center;
-  padding: 50px;
+  padding: 50px 0 20px 0;
 }
 
 grid-item-farms-index {
@@ -207,3 +207,5 @@ grid-item-farms-index {
 .new-form-wrapper {
  margin: 50px 0
 }
+
+#map { height: 180px; }
