@@ -6,14 +6,11 @@ module.exports = {
   index,
   show,
   new: newFarm,
-  create,
-  
+  create
 };
 
 async function index(req, res) {
-  
     const farms = await Farm.find({});
-    console.log(farms);
     res.render('farms/index', { title: '', farms });
   }
 
@@ -22,41 +19,32 @@ async function index(req, res) {
     res.render('farms/show', { title: '', farm });
   }
 
-
-  function newFarm(req, res) {
-    // We'll want to be able to render an  
-    // errorMsg if the create action fails
+  function newFarm(req, res) {                  // Render an errorMsg if create action fails
     res.render('farms/new', { title: '', errorMsg: '' });
   }
 
-
-  async function create(req, res) {
-    // Remove empty properties so that defaults will be applied
+  async function create(req, res) {             // Remove empty properties so that defaults will be applied
     for (let key in req.body) {
       if (req.body[key] === '') delete req.body[key];
     }
-    try {
-      // Update this line because now we need the _id of the new farm
+    try {                                                 // need the _id of the new farm
       const farm = await Farm.create(req.body);
-      let options = {
+      let options = {                                     // use OpenStreetMap GeoCoder function
         provider: 'openstreetmap'
       };
        
-      let geoCoder = nodeGeocoder(options);
+      let geoCoder = nodeGeocoder(options);               // use address data provided to define&store longitude and latitude in farm object 
       
       const geoResult = await geoCoder.geocode(req.body['address.street'] + ', ' + req.body['address.town'] + ' ' +  req.body['address.state'] + ' ' +  req.body['address.postcode']);
 
-      // Redirect to the new farm's show functionality 
       farm.coordinates.longitude = geoResult[0].longitude;
       farm.coordinates.latitude = geoResult[0].latitude;
-      console.log(farm)
       await farm.save();
 
       const farms = await Farm.find({});
 
       res.render('farms', { title: '', farms});
     } catch (err) {
-      // Typically some sort of validation error
       console.log(err);
       res.render('farms/new', { errorMsg: err.message });
     }

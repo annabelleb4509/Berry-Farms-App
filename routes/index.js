@@ -22,7 +22,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Berries' });
 });
 
-
 router.get('/auth/google', passport.authenticate(
   'google',
   {

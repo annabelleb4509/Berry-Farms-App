@@ -23,26 +23,24 @@ function edit(req, res) {
 
 
 async function addToProduce(req, res) {
-    if (req.body.availability === "on") {
-      req.body.availability = true
-    } else {
-      req.body.availability = false
-    }
-
-    try {   
-      const newFruit = await Fruit.create(req.body);
-      const farmFruit = await Farm.findById(req.params.id);
-      farmFruit.produce.push(newFruit)
-        await farmFruit.save();
-    } catch (err) {
-        console.log(err);
-    }
-    const farm = await Farm.findById(req.params.id).populate('produce');
-    res.render('farms/show', { title: 'Farm Details', farm });
+  if (req.body.availability === "on") {
+    req.body.availability = true;
+  } else {
+    req.body.availability = false;
+  }
+  try {   
+    const newFruit = await Fruit.create(req.body);
+    const farmFruit = await Farm.findById(req.params.id);
+    farmFruit.produce.push(newFruit)
+      await farmFruit.save();
+  } catch (err) {
+      console.log(err);
+  }
+  const farm = await Farm.findById(req.params.id).populate('produce');
+  res.render('farms/show', { title: 'Farm Details', farm });
 }
 
 async function newFruit(req, res) {
-  //Sort performers by their name
   const fruits = await Fruit.find({}).sort('name');
   res.render('fruits/new', { title: 'Add Fruit', fruits });
 }
