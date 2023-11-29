@@ -49,9 +49,11 @@ async function create(req, res) {
   try {
     await Fruit.create(req.body);
     await Fruit.save();
-    res.redirect(`/farms/show`);
+    const farm = await Farm.findById(req.params.id).populate('produce');;
+    res.render('farms/show', { title: 'Farm Details', farm });
   } catch (err) {
     console.log(err);
   }
-  res.redirect('/fruits/new');
+  const fruits = await Fruit.find({}).sort('name');
+  res.render('fruits/new', { title: 'Add Fruit', fruits });
 }

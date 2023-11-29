@@ -42,10 +42,9 @@ async function index(req, res) {
       await farm.save();
 
       const farms = await Farm.find({});
-
-      res.render('farms', { title: '', farms});
+      res.render('farms', { title: 'All Farms', farms});
     } catch (err) {
       console.log(err);
-      res.render('farms/new', { errorMsg: err.message });
+      res.render('farms/new', { title: 'Add Farm', errorMsg: err.message });
     }
   }

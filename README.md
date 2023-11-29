@@ -3,6 +3,8 @@ Pick your own berries - Farms near you
 
 The application provides an overview of fruit producing businesses where customers can visit and pick their own fruits. The website focuses on berries (for now).
 
+Visit the website: https://new-berry-farm-e0a2e7e09b08.herokuapp.com/
+
 
 Details
 ----------------------

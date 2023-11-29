@@ -5,7 +5,6 @@
 <header></header>
 
 <nav>
-  <a href="/" <%- title === 'Home' ? 'class="active"' : '' %>>HOME</a>
   <a href="/farms" <%- title === 'All Farms' ? 'class="active"' : '' %>>ALL FARMS</a>
     <% if (user) { %>
       <a href="/farms/new" <%- title === 'Add Farm' ? 'class="active"' : '' %>>ADD FARM</a>
@@ -34,7 +33,7 @@
           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           }).addTo(map);
 
-          <% farms.forEach(function(f) { %>                   // (Are 'squids' necessary inside script-tag?)
+          <% farms.forEach(function(f) { %>                 // (Are 'squids' necessary inside script-tag?)
           L.marker([<%= f.coordinates.latitude %>, <%= f.coordinates.longitude %>]).addTo(map)
           .bindPopup('<b><%= f.name %></b>').openPopup();
           <% }); %>

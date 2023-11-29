@@ -9,13 +9,13 @@ let options = {
  
 let geoCoder = nodeGeocoder(options);
 
-geoCoder.geocode('90 Albert St, Brunswick East VIC 3057')
-  .then((res)=> {
-    console.log(res);
-  })
-  .catch((err)=> {
-    console.log(err);
-  });
+// geoCoder.geocode('90 Albert St, Brunswick East VIC 3057')
+//   .then((res)=> {
+//     console.log(res);
+//   })
+//   .catch((err)=> {
+//     console.log(err);
+//   });
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
